@@ -186,107 +186,107 @@ extern "C"
         return 1;
     }
 
-    int luaopen_libtolkwrapper(lua_State *L)
+    int luaopen_libtolkluawrapper(lua_State *L)
     {
         hGetProcIDDLL = LoadLibrary(".\\Tolk.dll");
         if (!hGetProcIDDLL)
         {
-            printf("\nCould not load Tolk.dll\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load Tolk.dll\n");
             return 1;
         }
 
         func_tolk_load = (Tolk_Load)GetProcAddress(hGetProcIDDLL, "Tolk_Load");
         if (!func_tolk_load)
         {
-            printf("\nCould not load the function: Tolk_Load\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_Load\n");
             return 1;
         }
 
         func_tolk_isLoaded = (Tolk_IsLoaded)GetProcAddress(hGetProcIDDLL, "Tolk_IsLoaded");
         if (!func_tolk_isLoaded)
         {
-            printf("\nCould not load the function: Tolk_IsLoaded\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_IsLoaded\n");
             return 1;
         }
 
         func_tolk_unload = (Tolk_Unload)GetProcAddress(hGetProcIDDLL, "Tolk_Unload");
         if (!func_tolk_unload)
         {
-            printf("\nCould not load the function: Tolk_Unload\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_Unload\n");
             return 1;
         }
 
         func_tolk_trySAPI = (Tolk_TrySAPI)GetProcAddress(hGetProcIDDLL, "Tolk_TrySAPI");
         if (!func_tolk_trySAPI)
         {
-            printf("\nCould not load the function: Tolk_TrySAPI\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_TrySAPI\n");
             return 1;
         }
 
         func_tolk_preferSAPI = (Tolk_PreferSAPI)GetProcAddress(hGetProcIDDLL, "Tolk_PreferSAPI");
         if (!func_tolk_preferSAPI)
         {
-            printf("\nCould not load the function: Tolk_PreferSAPI\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_PreferSAPI\n");
             return 1;
         }
 
         func_tolk_detectScreenReader = (Tolk_DetectScreenReader)GetProcAddress(hGetProcIDDLL, "Tolk_DetectScreenReader");
         if (!func_tolk_detectScreenReader)
         {
-            printf("\nCould not load the function: Tolk_DetectScreenReader\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_DetectScreenReader\n");
             return 1;
         }
 
         func_tolk_hasSpeech = (Tolk_HasSpeech)GetProcAddress(hGetProcIDDLL, "Tolk_HasSpeech");
         if (!func_tolk_hasSpeech)
         {
-            printf("\nCould not load the function: Tolk_HasSpeech\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_HasSpeech\n");
             return 1;
         }
 
         func_tolk_hasBraille = (Tolk_HasBraille)GetProcAddress(hGetProcIDDLL, "Tolk_HasBraille");
         if (!func_tolk_hasBraille)
         {
-            printf("\nCould not load the function: Tolk_HasBraille\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_HasBraille\n");
             return 1;
         }
 
         func_tolk_output = (Tolk_Output)GetProcAddress(hGetProcIDDLL, "Tolk_Output");
         if (!func_tolk_output)
         {
-            printf("\nCould not load the function: Tolk_Output\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_Output\n");
             return 1;
         }
 
         func_tolk_speak = (Tolk_Speak)GetProcAddress(hGetProcIDDLL, "Tolk_Speak");
         if (!func_tolk_speak)
         {
-            printf("\nCould not load the function: Tolk_Speak\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_Speak\n");
             return 1;
         }
 
         func_tolk_braille = (Tolk_Braille)GetProcAddress(hGetProcIDDLL, "Tolk_Braille");
         if (!func_tolk_braille)
         {
-            printf("\nCould not load the function: Tolk_Braille\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_Braille\n");
             return 1;
         }
 
         func_tolk_isSpeaking = (Tolk_IsSpeaking)GetProcAddress(hGetProcIDDLL, "Tolk_IsSpeaking");
         if (!func_tolk_isSpeaking)
         {
-            printf("\nCould not load the function: Tolk_IsSpeaking\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_IsSpeaking\n");
             return 1;
         }
 
         func_tolk_silence = (Tolk_Silence)GetProcAddress(hGetProcIDDLL, "Tolk_Silence");
         if (!func_tolk_silence)
         {
-            printf("\nCould not load the function: Tolk_Silence\n");
+            printf("\n[Tolk Lua Wrapper] Error: Could not load the function: Tolk_Silence\n");
             return 1;
         }
 
-        static const struct luaL_Reg tolkwrapperLib[] = {
+        static const struct luaL_Reg functionsToRegister[] = {
             {"Load", l_tolk_load},
             {"IsLoaded", l_tolk_isLoaded},
             {"Unload", l_tolk_unload},
@@ -301,7 +301,7 @@ extern "C"
             {"IsSpeaking", l_tolk_isSpeaking},
             {"Silence", l_tolk_silence},
             {NULL, NULL}};
-        luaL_register(L, "tolkwrapperLib", tolkwrapperLib);
+        luaL_register(L, "Tolk", functionsToRegister);
         return 1;
     }
 

@@ -1,9 +1,9 @@
-require "libtolkwrapper"
+require "libtolkluawrapper"
 
-tolkwrapperLib.TrySAPI(true);
-tolkwrapperLib.Load()
-tolkwrapperLib.Output("Hello There!", true)
-print(tolkwrapperLib.HasBraille())
-print(tolkwrapperLib.DetectScreenReader())
-tolkwrapperLib.Output("Hiii!", false)
-tolkwrapperLib.Unload()
+Tolk.TrySAPI(true);
+Tolk.Load()
+Tolk.Output("Hello There!", true)
+print(Tolk.HasBraille())
+print(Tolk.DetectScreenReader())
+Tolk.Output("Hiii!", false)
+Tolk.Unload()
