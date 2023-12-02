@@ -1,4 +1,4 @@
-require "libtolkluawrapper"
+local Tolk = require "libtolkluawrapper"
 
 Tolk.TrySAPI(true);
 Tolk.Load()

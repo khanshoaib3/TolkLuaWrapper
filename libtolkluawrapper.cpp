@@ -1,5 +1,6 @@
 /* References
    - https://blog.devgenius.io/how-to-add-your-c-library-in-lua-46fd246f0fa8
+   - https://epics-lua.readthedocs.io/en/latest/adding-libraries.html
    - https://stackoverflow.com/questions/43980470/how-to-create-dll-of-lua-module (For correct build command in windows)
 */
 
@@ -301,7 +302,7 @@ extern "C"
             {"IsSpeaking", l_tolk_isSpeaking},
             {"Silence", l_tolk_silence},
             {NULL, NULL}};
-        luaL_register(L, "Tolk", functionsToRegister);
+        luaL_newlib(L, functionsToRegister);
         return 1;
     }
 
